@@ -9,14 +9,16 @@ defineProps<{
   removeTodo: (index: number) => void;
   removeAll: () => void;
   markAllDone: () => void;
+  createdTasks: number;
+  doneTasks: number;
 }>();
 </script>
 
 <template>
   <div class="todo-list-body">
     <header class="todo-list-header">
-      <h2 class="created-tasks">Created tasks</h2>
-      <h2 class="finished-tasks">Finished</h2>
+      <h2 class="created-tasks">Created tasks {{ createdTasks }}</h2>
+      <h2 class="finished-tasks">Finished {{ doneTasks }}</h2>
     </header>
     <ul>
       <li

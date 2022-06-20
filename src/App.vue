@@ -1,6 +1,7 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
+import { ref, onMounted, computed } from "vue";
 import Header from "@/components/Header.vue";
+import TodoForm from "@/components/TodoForm.vue";
 import TodoList from "@/components/TodoList.vue";
 
 type Todo = { id: number; done: boolean; content: string };
@@ -28,6 +29,8 @@ const markAllDone = () => todos.value.forEach(toggleDone);
 
 const removeAll = () => (todos.value = []);
 
+const doneTasks = computed(() => todos.value.filter((todo) => todo.done));
+
 onMounted(() => {
   console.log(`The initial todos is ${todos.value}`);
 });
@@ -38,15 +41,7 @@ onMounted(() => {
 
   <main>
     <div class="content">
-      <form @submit.prevent="addNewTodo">
-        <input
-          placeholder="Add new Todo"
-          v-model="newTodo"
-          class="input"
-          name="newTodo"
-        />
-        <button class="button">Add</button>
-      </form>
+      <TodoForm :addNewTodo="addNewTodo" v-model:newTodo="newTodo" />
 
       <TodoList
         :todos="todos"
@@ -54,6 +49,8 @@ onMounted(() => {
         :removeTodo="removeTodo"
         :markAllDone="markAllDone"
         :removeAll="removeAll"
+        :doneTasks="doneTasks.length"
+        :createdTasks="todos.length"
       />
     </div>
   </main>
