@@ -20,7 +20,7 @@ Typescript 🦕
 1. Clone this repository.
 2. Run the yarn command at the root of the cloned project folder to download the dependencies.
 3. Run yarn dev at the root of the project folder to start the application in development mode.
-4. Open the application in your at localhost:3000. 🚀
+4. Open the application at localhost:3000. 🚀
 ```
 
 # How to contribute? 😍
