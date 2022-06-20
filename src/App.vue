@@ -10,6 +10,8 @@ const todos = ref<Todo[]>([]);
 const newTodo = ref("");
 
 const addNewTodo = () => {
+  if (!newTodo.value) return;
+
   todos.value.push({
     id: Date.now(),
     done: false,
