@@ -1,6 +1,8 @@
 <script setup lang="ts">
-import { ref, onMounted } from "vue";
-import TodoItem from "@/components/TodoItem.vue";
+import { ref, onMounted, computed } from "vue";
+import Header from "@/components/Header.vue";
+import TodoForm from "@/components/TodoForm.vue";
+import TodoList from "@/components/TodoList.vue";
 
 type Todo = { id: number; done: boolean; content: string };
 
@@ -23,9 +25,11 @@ const toggleDone = (todo: Todo) => {
 
 const removeTodo = (index: number) => todos.value.splice(index, 1);
 
-const markAllDone = () => todos.value.forEach((todo) => (todo.done = true));
+const markAllDone = () => todos.value.forEach(toggleDone);
 
 const removeAll = () => (todos.value = []);
+
+const doneTasks = computed(() => todos.value.filter((todo) => todo.done));
 
 onMounted(() => {
   console.log(`The initial todos is ${todos.value}`);
@@ -33,45 +37,21 @@ onMounted(() => {
 </script>
 
 <template>
-  <header class="header">
-    <img src="./assets/todo.svg" alt="" />
-  </header>
+  <Header />
 
   <main>
     <div class="content">
-      <form @submit.prevent="addNewTodo">
-        <input
-          placeholder="Add new Todo"
-          v-model="newTodo"
-          class="input"
-          name="newTodo"
-        />
-        <button class="button">Criar</button>
-      </form>
+      <TodoForm :addNewTodo="addNewTodo" v-model:newTodo="newTodo" />
 
-      <div class="todo-list-body">
-        <header class="todo-list-header">
-          <h2 class="created-tasks">Created tasks</h2>
-          <h2 class="finished-tasks">Finished</h2>
-        </header>
-        <ul>
-          <li
-            @click="toggleDone(todo)"
-            v-for="(todo, index) in todos"
-            :key="todo.id"
-            class="todo"
-            :class="{ todoDone: todo.done }"
-          >
-            <TodoItem
-              :onRemoveTodo="() => removeTodo(index)"
-              :done="todo.done"
-              :content="todo.content"
-            />
-          </li>
-        </ul>
-        <button @click="removeAll">Remove all</button>
-        <button @click="markAllDone">Mark all done</button>
-      </div>
+      <TodoList
+        :todos="todos"
+        :toggleDone="toggleDone"
+        :removeTodo="removeTodo"
+        :markAllDone="markAllDone"
+        :removeAll="removeAll"
+        :doneTasks="doneTasks.length"
+        :createdTasks="todos.length"
+      />
     </div>
   </main>
 </template>
@@ -82,15 +62,6 @@ onMounted(() => {
 #app {
   font-weight: normal;
   height: 100%;
-}
-
-.header {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  width: 100%;
-  padding: 72px;
-  height: 20%;
 }
 
 main {
@@ -145,35 +116,5 @@ form {
   padding: 16px;
   font-size: 1rem;
   color: var(--white);
-}
-
-.todo-list-body {
-  width: 100%;
-  max-width: 736px;
-}
-
-.todo-list-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-}
-
-.created-tasks {
-  color: var(--blue);
-  font-weight: bold;
-  font-size: 0.875rem;
-}
-
-.finished-tasks {
-  color: var(--purple);
-  font-weight: bold;
-  font-size: 0.875rem;
-}
-
-ul {
-  list-style: none;
-  padding: 0;
-  margin-top: 12px;
 }
 </style>
