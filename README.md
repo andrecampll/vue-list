@@ -1,46 +1,45 @@
-# vue-app
 
-This template should help get you started developing with Vue 3 in Vite.
+# todo 📝
+<p align="center" t>
+  <img src="src/assets/todo.svg" />
+</p>
 
-## Recommended IDE Setup
+Manage your todos by using this application made with Vue.js
 
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur) + [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin).
+# Tecnologies 🚀
+Vue.js 🚀 <br />
+Typescript 🦕
 
-## Type Support for `.vue` Imports in TS
+# Result 🤓
+<p align="center" t>
+  <img src=".github/demo.png" />
+</p>
 
-TypeScript cannot handle type information for `.vue` imports by default, so we replace the `tsc` CLI with `vue-tsc` for type checking. In editors, we need [TypeScript Vue Plugin (Volar)](https://marketplace.visualstudio.com/items?itemName=Vue.vscode-typescript-vue-plugin) to make the TypeScript language service aware of `.vue` types.
-
-If the standalone TypeScript plugin doesn't feel fast enough to you, Volar has also implemented a [Take Over Mode](https://github.com/johnsoncodehk/volar/discussions/471#discussioncomment-1361669) that is more performant. You can enable it by the following steps:
-
-1. Disable the built-in TypeScript Extension
-    1) Run `Extensions: Show Built-in Extensions` from VSCode's command palette
-    2) Find `TypeScript and JavaScript Language Features`, right click and select `Disable (Workspace)`
-2. Reload the VSCode window by running `Developer: Reload Window` from the command palette.
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vitejs.dev/config/).
-
-## Project Setup
-
-```sh
-npm install
+# How to get this repository? 🤔
+```bash
+1. Clone this repository.
+2. Run the yarn command at the root of the cloned project folder to download the dependencies.
+3. Run yarn dev at the root of the project folder to start the application in development mode.
+4. Open the application in your at localhost:3000. 🚀
 ```
 
-### Compile and Hot-Reload for Development
+# How to contribute? 😍
+**Fork this repository**
+```bash
+# Clone your fork
+$ git clone your-fork-url && cd vue-list
 
-```sh
-npm run dev
+# Create a branch with your feature or bug fix
+$ git checkout -b my-branch
+
+# Commit your changes
+$ git commit -m 'my changes'
+
+# Push your branch
+$ git push origin my-branch
 ```
 
-### Type-Check, Compile and Minify for Production
+Delete your branch, if you want, when your pull request merge. <br />
 
-```sh
-npm run build
-```
-
-### Lint with [ESLint](https://eslint.org/)
-
-```sh
-npm run lint
-```
+Made with 💜 by <a href="https://www.linkedin.com/in/andrecampll/" target="_blank"> andrecampll </a>. <br />
+<br />
