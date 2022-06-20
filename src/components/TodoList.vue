@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import TodoItem from "@/components/TodoItem.vue";
+import TodoListEmpty from "@/components/TodoListEmpty.vue";
 
 type Todo = { id: number; done: boolean; content: string };
 
@@ -17,29 +18,39 @@ defineProps<{
 <template>
   <div class="todo-list-body">
     <header class="todo-list-header">
-      <h2 class="created-tasks">Created tasks {{ createdTasks }}</h2>
-      <h2 class="finished-tasks">Finished {{ doneTasks }}</h2>
+      <h2 class="created-tasks">
+        Created tasks <span class="counter"> {{ createdTasks }}</span>
+      </h2>
+      <h2 class="finished-tasks">
+        Finished <span class="counter"> {{ doneTasks }}</span>
+      </h2>
     </header>
-    <ul>
-      <li
-        @click="toggleDone(todo)"
-        v-for="(todo, index) in todos"
-        :key="todo.id"
-      >
-        <TodoItem
-          :onRemoveTodo="() => removeTodo(index)"
-          :done="todo.done"
-          :content="todo.content"
-        />
-      </li>
-    </ul>
 
-    <footer>
-      <button @click="markAllDone" class="button mark-all">
-        Mark all done
-      </button>
-      <button @click="removeAll" class="button remove-all">Remove all</button>
-    </footer>
+    <div v-if="todos.length > 0">
+      <ul>
+        <li
+          @click="toggleDone(todo)"
+          v-for="(todo, index) in todos"
+          :key="todo.id"
+        >
+          <TodoItem
+            :onRemoveTodo="() => removeTodo(index)"
+            :done="todo.done"
+            :content="todo.content"
+          />
+        </li>
+      </ul>
+
+      <footer>
+        <button @click="markAllDone" class="button mark-all">
+          Mark all done
+        </button>
+        <button @click="removeAll" class="button remove-all">Remove all</button>
+      </footer>
+    </div>
+    <div v-else>
+      <TodoListEmpty />
+    </div>
   </div>
 </template>
 
@@ -96,5 +107,13 @@ ul {
   list-style: none;
   padding: 0;
   margin-top: 12px;
+}
+
+.counter {
+  background: var(--gray-400);
+  border-radius: 50%;
+  padding: 2px 8px;
+  color: var(--white);
+  font-weight: bold;
 }
 </style>

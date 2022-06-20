@@ -7,6 +7,8 @@ import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 
 import { faTrashCan } from "@fortawesome/free-regular-svg-icons";
 
-library.add(faTrashCan);
+import { faPlus } from "@fortawesome/free-solid-svg-icons";
+
+library.add(faTrashCan, faPlus);
 
 createApp(App).component("font-awesome-icon", FontAwesomeIcon).mount("#app");

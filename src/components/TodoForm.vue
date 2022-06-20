@@ -16,7 +16,9 @@ defineProps<{
       class="input"
       name="newTodo"
     />
-    <button class="button">Add</button>
+    <button class="button">
+      Add <font-awesome-icon icon="fa-solid fa-plus" />
+    </button>
   </form>
 </template>
 
